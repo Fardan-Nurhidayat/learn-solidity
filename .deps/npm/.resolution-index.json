@@ -1,0 +1,10 @@
+{
+  "1. Introduction/introduction.sol": {
+    "__sources__": {
+      "1. Introduction/introduction.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.3;\n\ncontract Counter {\n    uint public count;\n\n    // Function to get the current count\n    function get() public view returns (uint) {\n        return count;\n    }\n\n    // Function to increment count by 1\n    function inc() public {\n        count += 1;\n    }\n\n    // Function to decrement count by 1\n    function dec() public {\n        count -= 1;\n    }\n}",
+        "file": "1. Introduction/introduction.sol"
+      }
+    }
+  }
+}
