@@ -1,31 +1,26 @@
-Welcome to this interactive Solidity course for beginners.
+Solidity supports iterative control flow statements that allow contracts to execute code repeatedly.
 
-In this first section, we will give you a short preview of the concepts we will cover in this course, look at an example smart contract, and show you how you can interact with this contract in the Remix IDE.
+Solidity differentiates between three types of loops: `for`, `while`, and `do while` loops.
 
-This contract is a counter contract that has the functionality to increase, decrease, and return the state of a counter variable.
+### for
+Generally, `for` loops (line 7) are great if you know how many times you want to execute a certain block of code. In solidity, you should specify this amount to avoid transactions running out of gas and failing if the amount of iterations is too high.
 
-If we look at the top of the contract, we can see some information about the contract like the license (line 1), the Solidity version (line 2), as well as the keyword `contract` and it's name, `Counter` (line 4). We will cover these concepts in the next section about the **Basic Syntax**.
+### while
+If you don’t know how many times you want to execute the code but want to break the loop based on a condition, you can use a `while` loop (line 20).
+Loops are seldom used in Solidity since transactions might run out of gas and fail if there is no limit to the number of iterations that can occur.
 
-With `uint public count` (line 5) we declare a state variable of the type `uint` with the visibility `public`. We will cover these concepts in our sections about **Variables**, **Primitive Data Types**, and **Visibility**.  
+### do while
+The `do while` loop is a special kind of while loop where you can ensure the code is executed at least once, before checking on the condition.
 
-We then create a `get` function (line 8) that is defined with the `view` keyword and returns a `uint` type. Specifically, it returns the `count` variable. This contract has two more functions, an `inc` (line 13) and `dec` (line 18) function that increases or decreases our count variable.
-We will talk about these concepts in our sections about **Functions - Reading and Writing to a State Variable** and **Functions - View and pure**.
+### continue
+The `continue` statement is used to skip the remaining code block and start the next iteration of the loop. In this contract, the `continue` statement (line 10) will prevent the second if statement (line 12) from being executed.
 
-## Compile and Deploy through Remix
+### break
+The `break` statement is used to exit a loop. In this contract, the break statement (line 14) will cause the for loop to be terminated after the sixth iteration.
 
-**GIF** Interacting with the contract:
-<img src="https://github.com/dacadeorg/remixMedia/blob/main/solidity-beginner-course/introduction.gif?raw=true" alt="Compile and deploy contract" width="300"/>
-
-1. We can compile your `Counter` contract in the "Solidity compiler" module of the Remix IDE.
-
-2. In the "Deploy & run transactions" module, we select our contract "Counter" in the contract input field and click on the "Deploy" button.
-
-3. We expand the token contract functions in the IDE, and test its `get`, `inc`, and `dec` functions.
+<a href="https://www.youtube.com/watch?v=SB705OK3bUg" target="_blank">Watch a video tutorial on Loop statements</a>.
 
 ## ⭐️ Assignment
-Throughout this course, we will give you assignments to test and consolidate your newly acquired knowledge.
-
-Your first assignment is to:
-1. Compile this contract.
-2. Deploy it to the Remix VM.
-3. Interact with your contract.
+1. Create a public `uint` state variable called count in the `Loop` contract.
+2. At the end of the for loop, increment the count variable by 1.
+3. Try to get the count variable to be equal to 9, but make sure you don’t edit the `break` statement.
