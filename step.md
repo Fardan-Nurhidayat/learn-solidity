@@ -1,26 +1,24 @@
-Solidity supports iterative control flow statements that allow contracts to execute code repeatedly.
+In Solidity, we can define custom data types in the form of *structs*. Structs are a collection of variables that can consist of different data types.
 
-Solidity differentiates between three types of loops: `for`, `while`, and `do while` loops.
+### Defining structs
+We define a struct using the `struct` keyword and a name (line 5). Inside curly braces, we can define our struct’s members, which consist of the variable names and their data types.
 
-### for
-Generally, `for` loops (line 7) are great if you know how many times you want to execute a certain block of code. In solidity, you should specify this amount to avoid transactions running out of gas and failing if the amount of iterations is too high.
+### Initializing structs
+There are different ways to initialize a struct.
 
-### while
-If you don’t know how many times you want to execute the code but want to break the loop based on a condition, you can use a `while` loop (line 20).
-Loops are seldom used in Solidity since transactions might run out of gas and fail if there is no limit to the number of iterations that can occur.
+Positional parameters: We can provide the name of the struct and the values of its members as parameters in parentheses (line 16).
 
-### do while
-The `do while` loop is a special kind of while loop where you can ensure the code is executed at least once, before checking on the condition.
+Key-value mapping: We provide the name of the struct and the keys and values as a mapping inside curly braces (line 19).
 
-### continue
-The `continue` statement is used to skip the remaining code block and start the next iteration of the loop. In this contract, the `continue` statement (line 10) will prevent the second if statement (line 12) from being executed.
+Initialize and update a struct: We initialize an empty struct first and then update its member by assigning it a new value (line 23).
 
-### break
-The `break` statement is used to exit a loop. In this contract, the break statement (line 14) will cause the for loop to be terminated after the sixth iteration.
+### Accessing structs
+To access a member of a struct we can use the dot operator (line 33). 
 
-<a href="https://www.youtube.com/watch?v=SB705OK3bUg" target="_blank">Watch a video tutorial on Loop statements</a>.
+### Updating structs
+To update a structs’ member we also use the dot operator and assign it a new value (lines 39 and 45).
+
+<a href="https://www.youtube.com/watch?v=kYBHq7EmFBc" target="_blank">Watch a video tutorial on Structs</a>.
 
 ## ⭐️ Assignment
-1. Create a public `uint` state variable called count in the `Loop` contract.
-2. At the end of the for loop, increment the count variable by 1.
-3. Try to get the count variable to be equal to 9, but make sure you don’t edit the `break` statement.
+Create a function `remove` that takes a `uint` as a parameter and deletes a struct member with the given index in the `todos` mapping.
