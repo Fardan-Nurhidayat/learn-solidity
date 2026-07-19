@@ -44,4 +44,9 @@ contract Todos {
         Todo storage todo = todos[_index];
         todo.completed = !todo.completed;
     }
+
+    // remove todo 
+    function remove(uint _index) public  {
+        delete todos[_index];
+    }
 }
