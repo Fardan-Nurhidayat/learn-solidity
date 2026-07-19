@@ -179,14 +179,6 @@
       }
     }
   },
-  "9. Data Locations/dataLocations.sol": {
-    "__sources__": {
-      "9. Data Locations/dataLocations.sol": {
-        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.3;\n\ncontract DataLocations {\n    uint[] public arr;\n    mapping(uint => address) map;\n    struct MyStruct {\n        uint foo;\n    }\n    mapping(uint => MyStruct) myStructs;\n\n    function f() public {\n        // call _f with state variables\n        _f(arr, map, myStructs[1]);\n\n        // get a struct from a mapping\n        MyStruct storage myStruct = myStructs[1];\n        // create a struct in memory\n        MyStruct memory myMemStruct = MyStruct(0);\n    }\n\n    function _f(\n        uint[] storage _arr,\n        mapping(uint => address) storage _map,\n        MyStruct storage _myStruct\n    ) internal {\n        // do something with storage variables\n    }\n\n    // You can return memory variables\n    function g(uint[] memory _arr) public returns (uint[] memory) {\n        // do something with memory array\n    }\n\n    function h(uint[] calldata _arr) external {\n        // do something with calldata array\n    }\n}",
-        "file": "9. Data Locations/dataLocations.sol"
-      }
-    }
-  },
   "10.1 Transactions - Ether and Wei/etherAndWei.sol": {
     "__sources__": {
       "10.1 Transactions - Ether and Wei/etherAndWei.sol": {
@@ -240,6 +232,22 @@
       "8.4 Data Structures - Enums/enums.sol": {
         "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.3;\n\ncontract Enum {\n    // Enum representing shipping status\n    enum Status {\n        Pending,\n        Shipped,\n        Accepted,\n        Rejected,\n        Canceled\n    }\n\n    enum Size {\n        S, \n        M, \n        L\n    }\n\n    enum Team {\n        FE, \n        BE, \n        PM, \n        Desain,\n        Devops\n    }\n\n    struct Employes {\n        address id;\n        string name;\n        uint8 age; \n        Team team;\n        bool isRegistered;\n    }\n\n    mapping(address => Employes) public employes;\n\n    // Default value is the first element listed in\n    // definition of the type, in this case \"Pending\"\n    Status public status;\n    Size public sizes;\n\n    // Returns uint\n    // Pending  - 0\n    // Shipped  - 1\n    // Accepted - 2\n    // Rejected - 3\n    // Canceled - 4\n    function get() public view returns (Status) {\n        return status;\n    }\n\n    // Update status by passing uint into input\n    function set(Status _status) public {\n        status = _status;\n    }\n\n    // You can update to a specific enum like this\n    function cancel() public {\n        status = Status.Canceled;\n    }\n\n    // delete resets the enum to its first value, 0\n    function reset() public {\n        delete status;\n    }\n\n    function getSize() public view returns (Size) {\n        return sizes;\n    }\n\n    function setSize(Size _size) public {\n        sizes = _size;\n    }\n\n    function registerEmploye(string memory _name , uint8 _age , Team _team , address _addr) public isRegistered(_addr) {\n        employes[_addr] = Employes({\n            id: _addr,\n            name: _name,\n            age: _age,\n            team: _team,\n            isRegistered: true\n        });\n    }\n\n    function getEmployes(address _addr) public isUserRegistered(_addr) view returns(Employes memory)  {\n        return employes[_addr];\n    }\n\n   function getTeam(uint id) public pure returns (Team) {\n        return Team(id);\n    }\n\n    modifier isRegistered(address _addr){\n        require(employes[_addr].isRegistered == false , \"The employes has been register\");\n        _;\n    }\n\n    modifier isUserRegistered(address _addr){\n        require(employes[_addr].isRegistered == true , \"The employes has not been register\");\n        _;\n    }\n\n}",
         "file": "8.4 Data Structures - Enums/enums.sol"
+      }
+    }
+  },
+  "9. Data Locations/dataLocations_answer.sol": {
+    "__sources__": {
+      "9. Data Locations/dataLocations_answer.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.3;\n\ncontract DataLocations {\n    uint[] public arr;\n    mapping(uint => address) map;\n    struct MyStruct {\n        uint foo;\n    }\n    mapping(uint => MyStruct) public myStructs;\n\n    function f() public returns (MyStruct memory, MyStruct memory, MyStruct memory){\n        // call _f with state variables\n        _f(arr, map, myStructs[1]);\n        // get a struct from a mapping\n        MyStruct storage myStruct = myStructs[1];\n        myStruct.foo = 4;\n        // create a struct in memory\n        MyStruct memory myMemStruct = MyStruct(0);\n        MyStruct memory myMemStruct2 = myMemStruct;\n        myMemStruct2.foo = 1;\n        \n        MyStruct memory myMemStruct3 = myStruct;\n        myMemStruct3.foo = 3;\n        return (myStruct, myMemStruct2, myMemStruct3);\n    }\n\n    function _f(\n        uint[] storage _arr,\n        mapping(uint => address) storage _map,\n        MyStruct storage _myStruct\n    ) internal {\n        // do something with storage variables\n    }\n\n    // You can return memory variables\n    function g(uint[] memory _arr) public returns (uint[] memory) {\n        // do something with memory array\n        _arr[0] = 1;\n    }\n\n    function h(uint[] calldata _arr) external {\n        // do something with calldata array\n        // _arr[0] = 1;\n    }\n}\n",
+        "file": "9. Data Locations/dataLocations_answer.sol"
+      }
+    }
+  },
+  "9. Data Locations/dataLocations.sol": {
+    "__sources__": {
+      "9. Data Locations/dataLocations.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.3;\n\ncontract DataLocations {\n    uint[] public arr;\n    mapping(uint => address) map;\n    struct MyStruct {\n        uint foo;\n    }\n    mapping(uint => MyStruct) myStructs;\n\n    function f() public returns (MyStruct memory, MyStruct memory, MyStruct memory){\n        // call _f with state variables\n        _f(arr, map, myStructs[1]);\n        // get a struct from a mapping\n        MyStruct storage myStruct = myStructs[1];\n        myStruct.foo = 4;\n        // create a struct in memory\n        MyStruct memory myMemStruct = MyStruct(0);\n        MyStruct memory myMemStruct2 = myMemStruct;\n        myMemStruct2.foo = 1;\n        \n        MyStruct memory myMemStruct3 = myStruct;\n        myMemStruct3.foo = 3;\n        return (myStruct, myMemStruct2, myMemStruct3);\n    }    \n    \n    function _f(\n        uint[] storage _arr,\n        mapping(uint => address) storage _map,\n        MyStruct storage _myStruct\n    ) internal {\n        // do something with storage variables\n            _myStruct.foo = 4;\n\n    }\n\n    // You can return memory variables\n    function g(uint[] memory _arr) public returns (uint[] memory) {\n        // do something with memory array\n    }\n\n    function h(uint[] calldata _arr) external {\n        // do something with calldata array\n    }\n}",
+        "file": "9. Data Locations/dataLocations.sol"
       }
     }
   }

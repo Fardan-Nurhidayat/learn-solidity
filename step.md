@@ -1,28 +1,47 @@
-In Solidity *enums* are custom data types consisting of a limited set of constant values. We use enums when our variables should only get assigned a value from a predefined set of values. 
+The values of variables in Solidity can be stored in different data locations: *memory*, *storage*, and *calldata*.
 
-In this contract, the state variable `status` can get assigned a value from the limited set of provided values of the enum `Status` representing the various states of a shipping status.
+As we have discussed before, variables of the value type store an independent copy of a value, while variables of the reference type (array, struct, mapping) only store the location (reference) of the value.
 
+If we use a reference type in a function, we have to specify in which data location their values are stored. The price for the execution of the function is influenced by the data location; creating copies from reference types costs gas.
 
-### Defining enums
-We define an enum with the enum keyword, followed by the name of the custom type we want to create (line 6). Inside the curly braces, we define all available members of the enum.
+### Storage
+Values stored in *storage* are stored permanently on the blockchain and, therefore, are expensive to use.
 
-### Initializing an enum variable
-We can initialize a new variable of an enum type by providing the name of the enum, the visibility, and the name of the variable (line 16). Upon its initialization, the variable will be assigned the value of the first member of the enum, in this case, Pending (line 7).
+In this contract, the state variables `arr`, `map`, and `myStructs` (lines 5, 6, and 10) are stored in storage. State variables are always stored in storage.
 
-Even though enum members are named when you define them, they are stored as unsigned integers, not strings. They are numbered in the order that they were defined, the first member starting at 0. The initial value of status, in this case, is 0.
+### Memory
+Values stored in *memory* are only stored temporarily and are not on the blockchain. They only exist during the execution of an external function and are discarded afterward. They are cheaper to use than values stored in *storage*.
 
-### Accessing an enum value
-To access the enum value of a variable, we simply need to provide the name of the variable that is storing the value (line 25).
+In this contract, the local variable `myMemstruct` (line 19), as well as the parameter `_arr` (line 31), are stored in memory. Function parameters need to have the data location *memory* or *calldata*.
 
-### Updating an enum value
-We can update the enum value of a variable by assigning it the `uint` representing the enum member (line 30). Shipped would be 1 in this example. Another way to update the value is using the dot operator by providing the name of the enum and its member (line 35).
+### Calldata
+*Calldata* stores function arguments. Like *memory*, *calldata* is only stored temporarily during the execution of an external function. In contrast to values stored in *memory*, values stored in *calldata* can not be changed. Calldata is the cheapest data location to use.
 
-### Removing an enum value
-We can use the delete operator to delete the enum value of the variable, which means as for arrays and mappings, to set the default value to 0.
+In this contract, the parameter `_arr` (line 35) has the data location *calldata*. If we wanted to assign a new value to the first element of the array `_arr`, we could do that in the `function g` (line 31) but not in the `function h` (line 35). This is because `_arr` in `function g `has the data location *memory* and *function h* has the data location `calldata`.
 
-<a href="https://www.youtube.com/watch?v=yJbx07N15j0" target="_blank">Watch a video tutorial on Enums</a>.
+## Assignments
+
+### Memory to memory
+Assignments from *memory* to *memory* create references instead of copies. If you change the value in one variable, the value of all other variables that reference the same data will be changed.
+
+If we were to create a new struct `myMemStruct2` with the data location *memory* inside the `function f` (line 12) and assign it the value of `myMemStruct` (line 19), any change to `myMemStruct2` would also change the value of `myMemStruct`.
+
+### Storage to local storage
+Assignments from *storage* to *local storage* also create references, not copies.
+
+If we change the value of the local variable `myStruct` (line 17), the value of our state variable `myStructs` (line 10) changes as well.
+
+## Storage and memory/calldata
+Assignments between *storage* and *memory* (or *calldata*) create independent copies, not references.
+
+If we were to create a new struct `myMemStruct3` with the data location *memory* inside the `function f` (line 12) and assign it the value of `myStruct`, changes in `myMemStruct3` would not affect the values stored in the mapping `myStructs` (line 10).
+
+As we said in the beginning, when creating contracts we have to be mindful of gas costs. Therefore, we need to use data locations that require the lowest amount of gas possible.
 
 ## ⭐️ Assignment
-1. Define an enum type called `Size` with the members `S`, `M`, and `L`.
-2. Initialize the variable `sizes` of the enum type `Size`.
-3. Create a getter function `getSize()` that returns the value of the variable `sizes`.
+1. Change the value of the `myStruct` member `foo`, inside the `function f`, to 4.
+2. Create a new struct `myMemStruct2` with the data location *memory* inside the `function f` and assign it the value of `myMemStruct`. Change the value of the `myMemStruct2` member `foo` to 1.
+3. Create a new struct `myMemStruct3` with the data location *memory* inside the `function f` and assign it the value of `myStruct`. Change the value of the `myMemStruct3` member `foo` to 3.
+4. Let the function f return `myStruct`, `myMemStruct2`, and `myMemStruct3`.
+
+Tip: Make sure to create the correct return types for the function `f`.
