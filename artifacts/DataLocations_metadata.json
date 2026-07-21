@@ -6,19 +6,18 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "arr",
+				"inputs": [],
+				"name": "employes",
 				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint8",
+						"name": "age",
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
@@ -26,78 +25,106 @@
 			},
 			{
 				"inputs": [],
-				"name": "f",
+				"name": "getEmployes",
 				"outputs": [
 					{
 						"components": [
 							{
-								"internalType": "uint256",
-								"name": "foo",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct DataLocations.MyStruct",
-						"name": "",
-						"type": "tuple"
-					},
-					{
-						"components": [
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
 							{
-								"internalType": "uint256",
-								"name": "foo",
-								"type": "uint256"
+								"internalType": "uint8",
+								"name": "age",
+								"type": "uint8"
 							}
 						],
-						"internalType": "struct DataLocations.MyStruct",
-						"name": "",
-						"type": "tuple"
-					},
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "foo",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct DataLocations.MyStruct",
+						"internalType": "struct DataLocations.User",
 						"name": "",
 						"type": "tuple"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getStudents",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint8",
+								"name": "age",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct DataLocations.User",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
-						"internalType": "uint256[]",
-						"name": "_arr",
-						"type": "uint256[]"
-					}
-				],
-				"name": "g",
-				"outputs": [
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
 					{
-						"internalType": "uint256[]",
-						"name": "",
-						"type": "uint256[]"
+						"internalType": "uint8",
+						"name": "_age",
+						"type": "uint8"
 					}
 				],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256[]",
-						"name": "_arr",
-						"type": "uint256[]"
-					}
-				],
-				"name": "h",
+				"name": "setEmployes",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_age",
+						"type": "uint8"
+					}
+				],
+				"name": "setStudents",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "students",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint8",
+						"name": "age",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -129,11 +156,11 @@
 	},
 	"sources": {
 		"9. Data Locations/dataLocations.sol": {
-			"keccak256": "0xaee1d7bff0f5f3a381d241c6e5e716305f7cc7af99093d7c2f3efa6073f2d8e0",
+			"keccak256": "0xa3f69ffbf924c4bf25e525830154b8656c3a80134ca9f2ec0cb9273811e7764e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0c3b45f93e61261b7e5e56a4ebf25a67e1bb330d0c87afd314370b8c57db0e29",
-				"dweb:/ipfs/QmYiLe6BK4Ascu7ZWQ1D4ZdtZypntdYfwTNW4QCUREeUze"
+				"bzz-raw://91ec1bf9b3aedfd7b287339c9ad8a7bc585d170d6548e724d73e06b8ff64ad60",
+				"dweb:/ipfs/QmavLCy8j31YQ43PAmfSwPAkVGNShrEQnYN9yDBT73PoG6"
 			]
 		}
 	},
