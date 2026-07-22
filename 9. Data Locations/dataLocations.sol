@@ -10,6 +10,17 @@ contract DataLocations {
 
     User public employes;
     User public students;
+    User public governents;
+
+    function  users() public view returns(User memory) {
+        User memory parent = employes;
+
+        parent.name = "Bapak Fardan Nurhidayat" ;
+        parent.age = 23;
+
+        return parent;
+    }
+
 
     function setEmployes(string memory _name , uint8 _age) public{
         employes.name = _name;

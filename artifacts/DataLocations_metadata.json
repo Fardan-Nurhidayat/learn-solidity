@@ -74,6 +74,24 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "governents",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint8",
+						"name": "age",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -126,6 +144,31 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "users",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint8",
+								"name": "age",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct DataLocations.User",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -156,11 +199,11 @@
 	},
 	"sources": {
 		"9. Data Locations/dataLocations.sol": {
-			"keccak256": "0xa3f69ffbf924c4bf25e525830154b8656c3a80134ca9f2ec0cb9273811e7764e",
+			"keccak256": "0xf7000f59ce96d99636c7d74074c18e05ba41b4bdbe374d85f8d7888f8fb3e1ed",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://91ec1bf9b3aedfd7b287339c9ad8a7bc585d170d6548e724d73e06b8ff64ad60",
-				"dweb:/ipfs/QmavLCy8j31YQ43PAmfSwPAkVGNShrEQnYN9yDBT73PoG6"
+				"bzz-raw://0e344a889e71e7d89d605a50724add90039ce09d372044fb4689a971c09ea33d",
+				"dweb:/ipfs/QmYpMJojPvL5BNjn2858Fv1zHpCjrjm8dCiDHgGDmaE8RP"
 			]
 		}
 	},
